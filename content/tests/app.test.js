@@ -136,3 +136,16 @@ describe('GET /content/likes/post/:comment_id', () => {
     expect(res.statusCode).toBe(200)
   })
 })
+
+describe('PUT /content/posts', () => {
+  it('Should return a 400 error if given invalid input data', async () => {
+    const res = await conn.put('/content/posts').send({
+      post_id: 'invalid',
+      title: '',
+      tags: '',
+      image: '',
+      description: ''
+    })
+    expect(res.statusCode).toBe(400)
+  })
+})
